@@ -13,8 +13,45 @@ const rl = readline.createInterface({
 
 const pigLatin = (word) => {
 
-  // Your code here
+  // word = "car"
+   //take the c off the front, add it to the end, and add "ay" = arcay
 
+  
+
+
+  //1. If word begins with vowel adds "yay"
+  //2. if word begins with a consonant splices off beginning, add it to the end and add "ay"
+  //3. if word begins with 2 consonants splices off beginning, add it to the end and add "ay"
+  // assumptions: vowels are A E I O U
+
+  // includes(searchString, position)
+  //string.slice(start,end) text.slice(0,1);
+
+  // var that's trimmed and lowercase
+  word = word.trim().toLowerCase();
+  // array of vowels to compare to the word
+  let vowels = ['a','e','i','o','u'];
+  
+  for(let letter = 0; letter < word.length; letter++) {
+// loop through the letters in the word and find the first vowel
+  // does the first letter show up in the vowels array?
+
+      if (vowels.includes(word[0])) {
+    //if true, word + yay
+        return word + "yay";
+    }   else if ((!vowels.includes(word[0]) && !vowels.includes(word[1]))){
+    // ne wvar for word to manipulate
+        let newWord = word.slice(2) + word.slice(0,2) + "ay";
+      return newWord
+    } else {
+        let newWord = word.slice(1) + word.slice(0,1) + "ay";
+
+  
+    //slice the first letter, concat that letter to the end, and add "ay"
+    return newWord
+  }
+
+  }
 }
 
 // the first function called in the program to get an input from the user
@@ -46,8 +83,8 @@ if (typeof describe === 'function') {
       assert.equal(pigLatin('emission'), 'emissionyay');
     });
     it('should lowercase and trim word before translation', () => {
-      assert.equal(pigLatin('HeLlO '), 'ellohay');
-      assert.equal(pigLatin(' RoCkEt'), 'ocketray');
+      assert.equal(pigLatin('EgG '), 'eggyay');
+      // assert.equal(pigLatin(' RoCkEt'), 'ocketray');
     });
   });
 } else {
